@@ -11,7 +11,6 @@ func solution(_ s:String) -> Bool
 {
     var ans:Bool = false
     var openCount : Int = 0
-    var closeCount : Int = 0
     var string = s.map { String($0) }
     var isStartOpen : Bool = true
     

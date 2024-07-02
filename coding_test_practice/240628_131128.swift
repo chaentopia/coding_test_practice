@@ -13,15 +13,35 @@ func solution(_ X:String, _ Y:String) -> String {
     var yString = Y.map { $0 }
     var arr: [String] = []
     
-    xString.forEach {
-        
+    var xCount = [Character : Int]()
+    var yCount = [Character : Int]()
+    
+    for item in xString {
+        xCount[item, default: 0] += 1
+    }
+    
+    for item in yString {
+        yCount[item, default: 0] += 1
+    }
+    
+    for (key, xValue) in xCount {
+        if let yValue = yCount[key] {
+            let commonCount = min(xValue, yValue)
+            for _ in 0..<commonCount {
+                arr.append(String(key))
+            }
+        }
     }
     
     if arr.isEmpty {
         return "-1"
     }
     
-    arr.sort(by: <)
+    if arr.allSatisfy { $0 == "0" } {
+        return "0"
+    }
+    
+    arr.sort(by: >)
     let answer = arr.joined(separator: "")
     
     return answer
